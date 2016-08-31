@@ -16,12 +16,14 @@ def detect(filename, cascade_file = "../lbpcascade_animeface.xml"):
                                      scaleFactor = 1.1,
                                      minNeighbors = 5,
                                      minSize = (24, 24))
-    ctr=0
+    ctr = 0
     for (x, y, w, h) in faces:
-        cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)
         crop_image=image[y:y+h,x:x+w]
         cv2.imwrite("face%d.png"%(ctr), crop_image)
-        ctr+=1
+        ctr += 1
+    
+    for (x, y, w, h) in faces:
+        cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
     cv2.imshow("AnimeFaceDetect", image)
     cv2.waitKey(0)
