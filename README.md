@@ -22,7 +22,7 @@ def detect(filename, cascade_file = "../lbpcascade_animeface.xml"):
         raise RuntimeError("%s: not found" % cascade_file)
 
     cascade = cv2.CascadeClassifier(cascade_file)
-    image = cv2.imread(filename)
+    image = cv2.imread(filename, cv2.IMREAD_COLOR)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     gray = cv2.equalizeHist(gray)
     
@@ -48,4 +48,7 @@ Run
 
     python detect.py imas.jpg
 
-![result](https://raw.githubusercontent.com/nagadomi/lbpcascade_animeface/master/figure/imas.png)
+![result](https://user-images.githubusercontent.com/287255/43184241-ed3f1af8-9022-11e8-8800-468b002c73d9.png)
+
+## Note
+I am providing similar project at https://github.com/nagadomi/animeface-2009. animeface-2009 is my original work that was made before libcascade_animeface. The detection accuracy is higher than this project. However, installation of that is a bit complicated. Also I am providing a face cropping script using animeface-2009.
